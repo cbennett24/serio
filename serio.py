@@ -41,7 +41,7 @@ class SerialFTP:
 
             # Show upload status
             if not self.quiet:
-                print "%d / %d" % (i, data_size)
+                print("%d / %d" % (i, data_size))
 
         return i
 
@@ -75,18 +75,18 @@ class TelnetFTP(SerialFTP):
 
 
 def usage():
-    print '\nUsage: %s [OPTIONS]\n' % sys.argv[0]
-    print '\t-s, --source=<local file>              Path to local file'
-    print '\t-d, --destination=<remote file>        Path to remote file'
-    print '\t    --telnet=<host>                    Upload via telnet instead of serial'
-    print '\t-p, --port=<port>                      Serial port to use [/dev/ttyUSB0] or telnet port [23]'
-    print '\t-b, --baudrate=<baud>                  Serial port baud rate [115200]'
-    print '\t-t, --time=<seconds>                   Time to wait between echo commands [0.1]'
-    print '\t    --login=<username>                 Login name for telnet'
-    print '\t    --pass=<passwd>                    Password for telnet'
-    print '\t-q, --quiet                            Supress status messages'
-    print '\t-h, --help                             Show help'
-    print ''
+    print('\nUsage: %s [OPTIONS]\n' % sys.argv[0])
+    print('\t-s, --source=<local file>              Path to local file')
+    print('\t-d, --destination=<remote file>        Path to remote file')
+    print('\t    --telnet=<host>                    Upload via telnet instead of serial')
+    print('\t-p, --port=<port>                      Serial port to use [/dev/ttyUSB0] or telnet port [23]')
+    print('\t-b, --baudrate=<baud>                  Serial port baud rate [115200]')
+    print('\t-t, --time=<seconds>                   Time to wait between echo commands [0.1]')
+    print('\t    --login=<username>                 Login name for telnet')
+    print('\t    --pass=<passwd>                    Password for telnet')
+    print('\t-q, --quiet                            Supress status messages')
+    print('\t-h, --help                             Show help')
+    print('')
     sys.exit(1)
 
 def main():
@@ -104,8 +104,8 @@ def main():
     try:
         opts, args = GetOpt(sys.argv[1:],'p:b:s:d:t:qh', ['port=', 'baudrate=',
             'source=', 'destination=', 'time=', 'quiet', 'help', 'telnet=', 'login=', 'pass='])
-    except GetoptError, e:
-        print 'Usage error:', e
+    except GetoptError as e:
+        print('Usage error:', e)
         usage()
 
     for opt, arg in opts:
@@ -131,7 +131,7 @@ def main():
             usage()
 
     if not source or not destination:
-        print 'Usage error: must specify -s and -d options'
+        print('Usage error: must specify -s and -d options')
         usage()
 
     try:
@@ -151,9 +151,9 @@ def main():
         size = sftp.put(source, destination)
         sftp.close()
 
-        print 'Uploaded %d bytes from %s to %s' % (size, source, destination)
-    except Exception, e:
-        print "ERROR:", e
+        print('Uploaded %d bytes from %s to %s' % (size, source, destination))
+    except Exception as e:
+        print("ERROR:", e)
 
 
 if __name__ == '__main__':
